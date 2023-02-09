@@ -1,4 +1,5 @@
 ﻿using apiFundadores.Models;
+using apiFundadores.Models.dto;
 using apiFundadores.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +18,10 @@ namespace apiFundadores.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<ActionResult<List<FornecedorModel>>> GetAll()
+        [HttpPost]
+        public async Task<ActionResult<List<FornecedorModel>>> GetAll(FilterFornecedoresDto filterFornecedoresDto)
         {
-            List<FornecedorModel> fornecedores = await _fornecedorRepositorio.GetAllFornecedores();
+            List<FornecedorModel> fornecedores = await _fornecedorRepositorio.GetAllFornecedores(filterFornecedoresDto);
             return Ok(fornecedores);
         }
 

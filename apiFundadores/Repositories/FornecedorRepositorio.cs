@@ -1,7 +1,9 @@
 ﻿using apiFundadores.Data;
 using apiFundadores.Models;
+using apiFundadores.Models.dto;
 using apiFundadores.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace apiFundadores.Repositories
 {
@@ -13,9 +15,23 @@ namespace apiFundadores.Repositories
             _dBCOntext = sistemaTarefasDBCOntext;
         }
 
-        public async Task<List<FornecedorModel>> GetAllFornecedores()
+        public async Task<List<FornecedorModel>> GetAllFornecedores(FilterFornecedoresDto filterFornecedoresDto)
         {
-            return await _dBCOntext.Fornecedores.ToListAsync();
+            List<FornecedorModel> lista = await _dBCOntext.Fornecedores.ToListAsync();
+            if(filterFornecedoresDto.Nome != null)
+                lista.Where(x => x.Nome == filterFornecedoresDto.Nome);
+
+            if (filterFornecedoresDto.CNPJ != null)
+                lista.Where(x => x.Cnpj == filterFornecedoresDto.CNPJ);
+
+            if (filterFornecedoresDto.Cidade != null)
+            {
+                foreach(var item in lista)
+                {
+                    item.EnderecoModels.Select(a => a.Cidade == filterFornecedoresDto.Cidade);
+                }
+            }
+            return lista;
         }
 
         public async Task<FornecedorModel> GetFornecedor(int id)
