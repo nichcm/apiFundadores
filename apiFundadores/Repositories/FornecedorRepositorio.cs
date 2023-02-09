@@ -17,13 +17,15 @@ namespace apiFundadores.Repositories
 
         public async Task<List<FornecedorModel>> GetAllFornecedores(FilterFornecedoresDto filterFornecedoresDto)
         {
-            List<FornecedorModel> lista = await _dBCOntext.Fornecedores.ToListAsync();
+            var query = _dBCOntext.Fornecedores.AsQueryable().Include(x => x.EnderecoModels);
+            
             if(filterFornecedoresDto.Nome != null)
-                lista.Where(x => x.Nome == filterFornecedoresDto.Nome);
+                query.Where(x => x.Nome == filterFornecedoresDto.Nome);
 
             if (filterFornecedoresDto.CNPJ != null)
-                lista.Where(x => x.Cnpj == filterFornecedoresDto.CNPJ);
+                query.Where(x => x.Cnpj == filterFornecedoresDto.CNPJ);
 
+            var lista = query.ToList();
             if (filterFornecedoresDto.Cidade != null)
             {
                 foreach(var item in lista)
