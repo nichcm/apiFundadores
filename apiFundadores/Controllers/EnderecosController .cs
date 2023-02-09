@@ -48,7 +48,8 @@ namespace apiFundadores.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<FornecedorModel>> DeleteById(int id)
         {
-            return Ok(await _fornecedorRepositorio.DeleteFornecedor(id));
+            FornecedorModel fornecedor = await _fornecedorRepositorio.GetFornecedor(id);
+            return Ok(fornecedor);
         }
 
     }

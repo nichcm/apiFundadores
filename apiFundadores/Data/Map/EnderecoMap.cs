@@ -15,6 +15,8 @@ namespace apiFundadores.Data.Map
             builder.Property(x => x.Estado).IsRequired().HasMaxLength(20);
             builder.Property(x => x.Cidade).IsRequired().HasMaxLength(20);
             builder.Property(x => x.Complemento).HasMaxLength(255);
+            builder.Property(x => x.FornecedorModelId);
+            builder.HasOne(x => x.FornecedorModel);
         }
     }
 }

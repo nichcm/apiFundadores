@@ -27,7 +27,7 @@ namespace apiFundadores.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Fonrnecedores",
+                name: "Fornecedores",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -39,7 +39,7 @@ namespace apiFundadores.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Fonrnecedores", x => x.Id);
+                    table.PrimaryKey("PK_Fornecedores", x => x.Id);
                 });
         }
 
@@ -49,7 +49,7 @@ namespace apiFundadores.Migrations
                 name: "Enderecos");
 
             migrationBuilder.DropTable(
-                name: "Fonrnecedores");
+                name: "Fornecedores");
         }
     }
 }

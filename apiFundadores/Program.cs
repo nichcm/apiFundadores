@@ -18,6 +18,7 @@ builder.Services.AddEntityFrameworkSqlServer()
     );
 
 builder.Services.AddScoped<IFornecedorRepositorio, FornecedorRepositorio>();
+builder.Services.AddScoped<IEnderecoRepositorio, EnderecoRepositorio>();
 
 var app = builder.Build();
 

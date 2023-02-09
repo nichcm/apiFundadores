@@ -8,5 +8,6 @@
         public string? Cnpj { get; set; }
         public string? Telefone { get; set; }
         public string? Email { get; set; }
+        public List<EnderecoModel> EnderecoModels { get; set; }
     }
 }

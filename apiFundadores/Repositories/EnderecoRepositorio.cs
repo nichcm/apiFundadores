@@ -5,24 +5,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace apiFundadores.Repositories
 {
-    public class FornecedorRepositorio : IFornecedorRepositorio
+    public class EnderecoRepositorio : IEnderecoRepositorio
     {
         private SistemaDBCOntext _dBCOntext;
-        public FornecedorRepositorio(SistemaDBCOntext sistemaTarefasDBCOntext) 
+        public EnderecoRepositorio(SistemaDBCOntext sistemaTarefasDBCOntext) 
         {
             _dBCOntext = sistemaTarefasDBCOntext;
         }
 
-        public async Task<List<FornecedorModel>> GetAllFornecedores()
+        public async Task<List<EnderecoModel>> GetAllEnderecos()
         {
             return await _dBCOntext.Fornecedores.ToListAsync();
         }
 
-        public async Task<FornecedorModel> GetFornecedor(int id)
+        public async Task<EnderecoModel> GetFornecedor(int id)
         {
             return await _dBCOntext.Fornecedores.FirstOrDefaultAsync(x => x.Id == id);
         }
-        public async Task<FornecedorModel> AddFornecedor(FornecedorModel fornecedor)
+        public async Task<EnderecoModel> AddFornecedor(EnderecoModel fornecedor)
         {
             await _dBCOntext.Fornecedores.AddAsync(fornecedor);
             await _dBCOntext.SaveChangesAsync();
@@ -32,7 +32,7 @@ namespace apiFundadores.Repositories
 
         public async Task<bool> DeleteFornecedor(int id)
         {
-            FornecedorModel fornecedorPorId = await GetFornecedor(id);
+            EnderecoModel fornecedorPorId = await GetFornecedor(id);
             if (fornecedorPorId == null)
                 throw new Exception("Fornecedor nao encontrado");
             _dBCOntext.Fornecedores.Remove(fornecedorPorId);
@@ -42,9 +42,9 @@ namespace apiFundadores.Repositories
 
         }
 
-        public async Task<FornecedorModel> EditFornecedor(FornecedorModel fornecedor)
+        public async Task<EnderecoModel> EditFornecedor(EnderecoModel fornecedor)
         {
-            FornecedorModel fornecedorPorId = await GetFornecedor(fornecedor.Id);
+            EnderecoModel fornecedorPorId = await GetFornecedor(fornecedor.Id);
             if (fornecedorPorId == null)
                 throw new Exception("Fornecedor nao encontrado");
 

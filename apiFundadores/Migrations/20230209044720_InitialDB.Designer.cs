@@ -94,7 +94,7 @@ namespace apiFundadores.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Fonrnecedores");
+                    b.ToTable("Fornecedores");
                 });
 #pragma warning restore 612, 618
         }

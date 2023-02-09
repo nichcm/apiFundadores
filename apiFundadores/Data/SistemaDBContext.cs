@@ -12,7 +12,7 @@ namespace apiFundadores.Data
         { 
         }
 
-        public DbSet<FornecedorModel> Fonrnecedores { get; set; }
+        public DbSet<FornecedorModel> Fornecedores { get; set; }
         public DbSet<EnderecoModel> Enderecos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
