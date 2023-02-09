@@ -2,12 +2,12 @@
 
 namespace apiFundadores.Repositories.Interfaces
 {
-    public interface IFornecedorRepositorio
+    public interface IEnderecoRepositorio
     {
-        Task<List<FornecedorModel>> GetAllFornecedores();
-        Task<FornecedorModel> GetFornecedor(int id);
-        Task<FornecedorModel> AddFornecedor(FornecedorModel fornecedor);
-        Task<FornecedorModel> EditFornecedor(FornecedorModel fornecedor);
-        Task<bool> DeleteFornecedor(int id);
+        Task<List<EnderecoModel>> GetAllEnderecos();
+        Task<EnderecoModel> GetEndereco(int id);
+        Task<EnderecoModel> AddEndereco(EnderecoModel fornecedor);
+        Task<EnderecoModel> EditEndereco(EnderecoModel fornecedor);
+        Task<bool> DeleteEndereco(int id);
     }
 }

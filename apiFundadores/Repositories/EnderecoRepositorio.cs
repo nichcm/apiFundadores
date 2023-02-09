@@ -15,48 +15,50 @@ namespace apiFundadores.Repositories
 
         public async Task<List<EnderecoModel>> GetAllEnderecos()
         {
-            return await _dBCOntext.Fornecedores.ToListAsync();
+            return await _dBCOntext.Enderecos.ToListAsync();
         }
 
-        public async Task<EnderecoModel> GetFornecedor(int id)
+        public async Task<EnderecoModel> GetEndereco(int id)
         {
-            return await _dBCOntext.Fornecedores.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dBCOntext.Enderecos.FirstOrDefaultAsync(x => x.Id == id);
         }
-        public async Task<EnderecoModel> AddFornecedor(EnderecoModel fornecedor)
+        public async Task<EnderecoModel> AddEndereco(EnderecoModel endereco)
         {
-            await _dBCOntext.Fornecedores.AddAsync(fornecedor);
+            await _dBCOntext.Enderecos.AddAsync(endereco);
             await _dBCOntext.SaveChangesAsync();
 
-            return fornecedor;
+            return endereco;
         }
 
-        public async Task<bool> DeleteFornecedor(int id)
+        public async Task<bool> DeleteEndereco(int id)
         {
-            EnderecoModel fornecedorPorId = await GetFornecedor(id);
-            if (fornecedorPorId == null)
-                throw new Exception("Fornecedor nao encontrado");
-            _dBCOntext.Fornecedores.Remove(fornecedorPorId);
+            EnderecoModel enderecoPorId = await GetEndereco(id);
+            if (enderecoPorId == null)
+                throw new Exception("Endereco nao encontrado");
+            _dBCOntext.Enderecos.Remove(enderecoPorId);
             await _dBCOntext.SaveChangesAsync();
             return true;
 
 
         }
 
-        public async Task<EnderecoModel> EditFornecedor(EnderecoModel fornecedor)
+        public async Task<EnderecoModel> EditEndereco(EnderecoModel endereco)
         {
-            EnderecoModel fornecedorPorId = await GetFornecedor(fornecedor.Id);
-            if (fornecedorPorId == null)
-                throw new Exception("Fornecedor nao encontrado");
+            EnderecoModel enderecoPorId = await GetEndereco(endereco.Id);
+            if (enderecoPorId == null)
+                throw new Exception("Endereco nao encontrado");
 
-            fornecedorPorId.Telefone = fornecedor.Telefone;
-            fornecedorPorId.Nome = fornecedor.Nome;
-            fornecedorPorId.Cnpj = fornecedor.Cnpj;
-            fornecedorPorId.Email = fornecedor.Email;
+            enderecoPorId.Cep = endereco.Cep;
+            enderecoPorId.Rua = endereco.Rua;
+            enderecoPorId.Complemento = endereco.Complemento;
+            enderecoPorId.Cidade = endereco.Cidade;
+            enderecoPorId.Estado = endereco.Estado;
+            enderecoPorId.Pais = endereco.Pais;
 
-            _dBCOntext.Fornecedores.Update(fornecedorPorId);
+            _dBCOntext.Enderecos.Update(enderecoPorId);
             await _dBCOntext.SaveChangesAsync();
 
-            return fornecedorPorId;
+            return enderecoPorId;
 
         }
 
